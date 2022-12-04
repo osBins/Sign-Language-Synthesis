@@ -30,12 +30,14 @@ dict = {
         "course": "", # LSF. ISL does not exist, BSL was not found.
         "in": "",
         "many": "",
+        "lot": "",
         # mathematics ISL exists but no HamNoSys
         "we": "",
         "learn": "",
         "school": "",
         "thinking": "", # think
         "example": "", # instance
+        "instance": "",
         "when": "",
         "use": "",
         "long": "",

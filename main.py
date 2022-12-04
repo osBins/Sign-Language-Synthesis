@@ -7,7 +7,6 @@ import time
 import os
 import psutil
 
-
 load_dotenv()
 PLAYER_PATH = os.environ.get("PLAYER_PATH")
 
@@ -33,9 +32,11 @@ def convert():
 
     for i in data:
         # handling HamNoSys encoding-decoding via Unicode characters
+        if i not in dict:
+            print(i, "is not in dictionary, continuing...")
+            continue
         res = ''.join(r'\u{:04x}'.format(ord(chr)) for chr in dict[i])
         hamList = [res.encode().decode('unicode_escape')]
-        print(hamList)
         Ham2SIGML.readInput(hamList, i)
         
         with open('SiGML-output.sigml', 'r') as file:
@@ -43,6 +44,6 @@ def convert():
             s.connect(("localhost", 8052))
             data = file.read()
             s.sendall(bytes(data, encoding="utf-8"))
-        time.sleep(1)
+        time.sleep(0.75)
 
 convert() 

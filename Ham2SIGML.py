@@ -99,7 +99,10 @@ def writeSiGML(thisdict, dictGloss):
 	dataStr = ET.tostring(data, encoding='unicode')
 	dom = xml.dom.minidom.parseString(dataStr)
 	aux = dom.toprettyxml(encoding='UTF-8').decode("utf-8")
-	# print(aux.split("\n"))
+
+	aux = aux.split("\n")[2:-2]
+	aux = "\n".join(aux)
+	print(aux)
 	with open("SiGML-output.sigml", "w") as f:
 	  	f.write(aux)
 
