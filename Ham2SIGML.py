@@ -113,9 +113,9 @@ def writeSiGML(thisdict):
 
 	dataStr = ET.tostring(data, encoding='unicode')
 	dom = xml.dom.minidom.parseString(dataStr)
-	aux = dom.toprettyxml(encoding='UTF-8').decode("utf-8")		#to be well indented
+	aux = dom.toprettyxml(encoding='UTF-8').decode("utf-8")
+	# print(aux.split("\n"))
 	with open("SiGML-output.sigml", "w") as f:
-		f.write(aux)
-	# sys.stdout.write(aux)
+	 	f.write(aux)
 
 
