@@ -1,48 +1,36 @@
 import xml.etree.ElementTree as ET
 import xml.dom.minidom 
-#
-#To run:
-#   python HamNoSys2SiGML.py "hamnosysSymbols" ("glosses")
-#												optional
-# - If the user chooses to provide the glosses, the number of glosses must be equal to the number of HamNoSys symbols
-# - Both the set of HamNoSys symbols and the glosses must be identified by their quotes
-#
-#	Ex:. python HamNoSyS2SiGML.py "hamnosyssymbol_GOOD hamnosyssymbol_MORNING" ("GOOD MORNING")
-#
 
-
-#Reads command line input and decodes the hamnosys characters
-def readInput(hamNotation):
+def readInput(hamNotation, dictGloss):
 	global data, glosses_sigml, hasGlosses
-	# create the xml file structure	
+
 	data = ET.Element('sigml')
 	glosses_sigml = []
 	inputContent = hamNotation
 
 	if len(inputContent) > 1:					
-		hasGlosses = True						#if the input has glosses
+		hasGlosses = True	
 		hamnosysContent = inputContent[0].split(" ")
 		glossesList = inputContent[1].split(" ")
 	else:										
-		hasGlosses = False						#if the input doesnt have glosses
+		hasGlosses = False				
 		hamnosysContent = inputContent[0].split(" ")
 	
 	codesList = []
 	for char in hamnosysContent:
-		hamnosysCode = char.encode('unicode_escape').decode()	#decode the hamnosys characters
+		hamnosysCode = char.encode('unicode_escape').decode()	
 		hamnosysCode = hamnosysCode.replace("\\u", "")
 		hamnosysCode = hamnosysCode.upper()
 		codesList.append(hamnosysCode)
 
 
 	if hasGlosses:
-		codesList = readLists(glossesList, codesList)	
+		codesList = readLists(glossesList, codesList, dictGloss)	
 	else:
-		codesList = readLists(None, codesList)
+		codesList = readLists(None, codesList, dictGloss)
 
 
-#Makes the association between the hamnosys codes received and their glosses (if received)
-def readLists(glosses, codes):	
+def readLists(glosses, codes, dictGloss):	
 	if hasGlosses:
 		glosses_hamnosys = [(glosses[i], codes[i]) for i in range(0, len(codes))]
 
@@ -58,13 +46,12 @@ def readLists(glosses, codes):
 			readCode(count, aux)	
 			count += 1
 
-	writeSiGML(glosses_sigml)
+	writeSiGML(glosses_sigml, dictGloss)
 
 
-#Separates hamnosys codes from each other
 def hamnosysList(codes):
 	hamnosys_list = []
-	n = 4 		#each hamnosys code has 4 characters
+	n = 4 
 
 	for j in range(0, len(codes), n):
 		singleCode = codes[j:j+n]
@@ -72,10 +59,8 @@ def hamnosysList(codes):
 
 	return hamnosys_list
 
-
-#Provides de association for hamnosys unicode to its sigml code
 def readCode(gloss, hamnosys):
-	conversionTXT = "conversionSpreadSheet.txt"		#txt file with association between sigml and hamnosys unicode codes
+	conversionTXT = "conversionSpreadSheet.txt"
 	sigmlList = []
 
 	with open(conversionTXT, 'r') as f:
@@ -92,15 +77,15 @@ def readCode(gloss, hamnosys):
 		glosses_sigml.append((gloss, sigmlList[i]))
 
 
-#Writes the sigml
-def writeSiGML(thisdict):
+def writeSiGML(thisdict, dictGloss):
 	previousGloss = "null"
 
 	for i in range(0, len(thisdict)):
-		if(previousGloss == thisdict[i][0]):			#if the gloss is the same the hamnosys codes are added in the same component
+		if(previousGloss == thisdict[i][0]):
 			ET.SubElement(itemManual, thisdict[i][1])
 		else:
 			itemGloss = ET.SubElement(data, 'hns_sign')
+			itemGloss.set('gloss', dictGloss)			
 			if(hasGlosses):
 				itemGloss.set('gloss', thisdict[i][0])			
 			
@@ -116,6 +101,6 @@ def writeSiGML(thisdict):
 	aux = dom.toprettyxml(encoding='UTF-8').decode("utf-8")
 	# print(aux.split("\n"))
 	with open("SiGML-output.sigml", "w") as f:
-	 	f.write(aux)
+	  	f.write(aux)
 
 

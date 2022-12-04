@@ -1,9 +1,10 @@
+from dict import dict
+from dotenv import load_dotenv
+
 import Ham2SIGML
 import socket
-from dict import dict
 import time
 import os
-from dotenv import load_dotenv
 import psutil
 
 
@@ -33,9 +34,8 @@ def convert():
     for i in data:
         # handling HamNoSys encoding-decoding via Unicode characters
         res = ''.join(r'\u{:04x}'.format(ord(chr)) for chr in dict[i])
-
         hamList = [res.encode().decode('unicode_escape')]
-        Ham2SIGML.readInput(hamList)
+        Ham2SIGML.readInput(hamList, i)
         
         with open('SiGML-output.sigml', 'r') as file:
             s = socket.socket()
