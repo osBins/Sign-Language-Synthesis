@@ -38,7 +38,7 @@ def convert():
         res = ''.join(r'\u{:04x}'.format(ord(chr)) for chr in dict[i])
         hamList = [res.encode().decode('unicode_escape')]
         Ham2SIGML.readInput(hamList, i)
-        
+
         with open('SiGML-output.sigml', 'r') as file:
             s = socket.socket()
             s.connect(("localhost", 8052))
