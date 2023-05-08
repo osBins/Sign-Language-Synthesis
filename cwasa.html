@@ -10,29 +10,30 @@
 
 <!-- CWA @ vhg.cmp.uea.ac.uk/jrwg/ -->
 <link rel="stylesheet"
-    href="https://vhg.cmp.uea.ac.uk/tech/jas/vhg2023/cwa/cwasa.css" />
+href="https://vhg.cmp.uea.ac.uk/tech/jas/vhg2023/cwa/cwasa.css" />
 <script type="text/javascript"
     src="https://vhg.cmp.uea.ac.uk/tech/jas/vhg2023/cwa/allcsa.js"></script>
+    
 
-<script language="javascript">
+    <script language="javascript">
 
 CWASA.getLogger("Avatar", "info");
 
 function playURL(surl) {
-	CWASA.playSiGMLURL(surl);
+  CWASA.playSiGMLURL(surl);
 }
 
 function playText(stext) {
-	CWASA.playSiGMLText(stext);
+  CWASA.playSiGMLText(stext);
 }
 
 CWASA.addHook("status", addStatus);
 
 function addStatus(evt) {
-	var elt = document.getElementById("myStatusLog");
+  var elt = document.getElementById("myStatusLog");
 	var msg = evt.msg;
 	if (evt.av != "*") {
-		msg = "[av" + evt.av + "] " + msg;
+    msg = "[av" + evt.av + "] " + msg;
 	}
 	elt.value = elt.value + msg + "\n";
 }
@@ -43,24 +44,24 @@ CWASA.addHook("sigmlloaded", endJSON);
 var signSeq = 0;
 
 function startJSON(evt) {
-	var elt = document.getElementById("JSONText");
+  var elt = document.getElementById("JSONText");
 	if (elt) {
-		elt.value = "[\n";
+    elt.value = "[\n";
 		signSeq = 0;
 	}
 }
 
 function writeJSON(evt) {
-	var elt = document.getElementById("JSONText");
+  var elt = document.getElementById("JSONText");
 	if (elt) {
-		if (signSeq > 0) elt.value += ",\n"
+    if (signSeq > 0) elt.value += ",\n"
 		signSeq++;
 		elt.value += JSON.stringify(evt.msg);
 	}
 }
 
 function endJSON(evt) {
-	var elt = document.getElementById("JSONText");
+  var elt = document.getElementById("JSONText");
 	if (elt) {
 		elt.value += "\n]\n";
 	}
@@ -69,14 +70,14 @@ function endJSON(evt) {
 CWASA.addHook("avatarfps", setFPS, 0);
 
 function setFPS(evt) {
-	var elt = document.getElementById("myFPS");
+  var elt = document.getElementById("myFPS");
 	elt.value = evt.msg.toFixed(2);
 }
 
 CWASA.addHook("avatarsign", setSignFrame, 0);
 
 function setSignFrame(evt) {
-	var msg = evt.msg;
+  var msg = evt.msg;
 	var elt = document.getElementById("mySF");
 	elt.value = (msg.s+1)+"/"+(msg.f+1);
 	elt = document.getElementById("myGloss");
@@ -88,78 +89,36 @@ function setSignFrame(evt) {
 </head>
 
 <body onload="CWASA.init({avSettings:{initCamera:[0.00,0.53,2.06,-12.50,18.00,30.00,-1.00,-1.00],initSpeed:-1},useClientConfig:true});">
-
-<!--================================================================-->
-<h3>CoffeeScript WebGL ARP Signing Avatar with Animgen via JASigning: vhg.2023</h3>
-<h4>Test direct access to CWASA</h4>
-<hr/>
-
-<!-- CWA signing avatar panel 0 -->
-<!--================================================================-->
-<div class="CWASAPanel av0" align="center" ></div>
-<!--================================================================-->
-<hr/>
-<p align="center">
-<span class="CWASAProgress av0"></span>
-<hr/>
-<p align="center">
-<span style="font-size: 90%;" >
-Sign/Frame:
-<input id="mySF" class="txtSF" value="0/0" type="text" />
-&nbsp;
-Gloss:
-<input id="myGloss" class="txtGloss" value="[none]" type="text" />
-&nbsp;
-FPS:
-<input id="myFPS" class="txtFPS" value="00.00" type="text" />
-</span>
-<hr/>
-
-<div align="center">
-New Text: <input type="button" value="doText" onclick='playText(document.getElementById("mySiGML").value);' /><br>
-<textarea id="mySiGML" class="txtaSiGMLText" rows="6" >
-<?xml version="1.0" encoding="utf-8"?>
-<sigml>
-
-<hns_sign gloss="mug">
-  <hamnosys_nonmanual>
-    <hnm_mouthpicture picture="mVg"/>
-  </hamnosys_nonmanual>
-  <hamnosys_manual>
-    <hamfist/> <hamthumbacrossmod/>
-        <hamextfingerol/> <hampalml/>
-    <hamshoulders/>
-    <hamparbegin/> <hammoveu/> <hamarcu/>
-        <hamreplace/> <hamextfingerul/> <hampalmdl/>
-    <hamparend/>
-  </hamnosys_manual>
-</hns_sign>
-
-<hns_sign gloss="take">
-  <hamnosys_nonmanual>
-    <hnm_mouthpicture picture="te_Ik"/>
-  </hamnosys_nonmanual>
-  <hamnosys_manual>
-    <hamceeall/> <hamextfingerol/> <hampalml/>
-    <hamlrbeside/> <hamshoulders/> <hamarmextended/>
-    <hamreplace/> <hamextfingerl/> <hampalml/>
-    <hamchest/> <hamclose/>
-  </hamnosys_manual>
-</hns_sign>
-
-<hns_sign gloss="i">
-  <hamnosys_nonmanual>
-    <hnm_mouthpicture picture="a_I"/>
-  </hamnosys_nonmanual>
-  <hamnosys_manual>
-    <hamfinger2/> <hamthumbacrossmod/>
-    <hamextfingeril/> <hampalmr/>
-    <hamchest/> <hamtouch/>
-  </hamnosys_manual>
-</hns_sign>
-
-</sigml>
-</textarea>
+  
+  <!--================================================================-->
+  <h3>CoffeeScript WebGL ARP Signing Avatar with Animgen via JASigning: vhg.2023</h3>
+  <h4>Test direct access to CWASA</h4>
+  <hr/>
+  
+  <!-- CWA signing avatar panel 0 -->
+  <!--================================================================-->
+  <div class="CWASAPanel av0" align="center" ></div>
+  <!--================================================================-->
+  <hr/>
+  <p align="center">
+    <span class="CWASAProgress av0"></span>
+    <hr/>
+    <p align="center">
+      <span style="font-size: 90%;" >
+        Sign/Frame:
+        <input id="mySF" class="txtSF" value="0/0" type="text" />
+        &nbsp;
+        Gloss:
+        <input id="myGloss" class="txtGloss" value="[none]" type="text" />
+        &nbsp;
+        FPS:
+        <input id="myFPS" class="txtFPS" value="00.00" type="text" />
+      </span>
+      <hr/>
+      
+      <div align="center">
+        New Text: <input type="button" id="playButton" value="doText" onclick='playText(document.getElementById("mySiGML").value);' /><br>
+        <textarea id="mySiGML" class="txtaSiGMLText" rows="6" ></textarea>
 
 <br>
 New URL:  <input type="button" value="doURL" onclick='playURL(document.getElementById("myURL").value);' /><br>
@@ -180,10 +139,58 @@ New URL:  <input type="button" value="doURL" onclick='playURL(document.getElemen
 
 <hr/>
 <p>
-<small>
-Available under the
-<a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA License</a>. JRWG 2021-01-19
-</small>
-
+  <small>
+    Available under the
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA License</a>. JRWG 2021-01-19
+  </small>
+   
 </body>
+<script>
+let sigmlInput = document.getElementsByClassName('txtaSiGMLText')
+sigmlInput[0].value = `<?xml version="1.0" encoding="utf-8"?>
+<sigml>
+<hns_sign gloss="mug">
+<hamnosys_nonmanual>
+<hnm_mouthpicture picture="mVg"/>
+</hamnosys_nonmanual>
+<hamnosys_manual>
+<hamfist/> <hamthumbacrossmod/>
+<hamextfingerol/> <hampalml/>
+<hamshoulders/>
+<hamparbegin/> <hammoveu/> <hamarcu/>
+<hamreplace/> <hamextfingerul/> <hampalmdl/>
+<hamparend/>
+</hamnosys_manual>
+</hns_sign>
+<hns_sign gloss="take">
+<hamnosys_nonmanual>
+<hnm_mouthpicture picture="te_Ik"/>
+</hamnosys_nonmanual>
+<hamnosys_manual>
+<hamceeall/> <hamextfingerol/> <hampalml/>
+<hamlrbeside/> <hamshoulders/> <hamarmextended/>
+<hamreplace/> <hamextfingerl/> <hampalml/>
+<hamchest/> <hamclose/>
+</hamnosys_manual>
+</hns_sign>
+<hns_sign gloss="i">
+<hamnosys_nonmanual>
+<hnm_mouthpicture picture="a_I"/>
+</hamnosys_nonmanual>
+<hamnosys_manual>
+<hamfinger2/> <hamthumbacrossmod/>
+<hamextfingeril/> <hampalmr/>
+<hamchest/> <hamtouch/>
+</hamnosys_manual>
+</hns_sign>
+</sigml>
+`
+let btn = document.getElementById("playButton")
+setTimeout(() => {
+  console.log('YOLO');
+  btn.click()
+}, 2000)
+
+</script>
+
 </html>
