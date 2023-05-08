@@ -1,0 +1,1 @@
+{"text": " I, I, J, J, K, K", "segments": [{"id": 0, "seek": 0, "start": 0.0, "end": 18.48, "text": " I, I, J, J, K, K", "tokens": [50364, 286, 11, 286, 11, 508, 11, 508, 11, 591, 11, 591, 51288], "temperature": 0.0, "avg_logprob": -0.5768741198948452, "compression_ratio": 0.8421052631578947, "no_speech_prob": 0.17116527259349823}], "language": "English"}

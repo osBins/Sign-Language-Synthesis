@@ -88,15 +88,7 @@ function setSignFrame(evt) {
 
 </head>
 
-<body onload="CWASA.init({avSettings:{initCamera:[0.00,0.53,2.06,-12.50,18.00,30.00,-1.00,-1.00],initSpeed:-1},useClientConfig:true});">
-  
-  <!--================================================================-->
-  <h3>CoffeeScript WebGL ARP Signing Avatar with Animgen via JASigning: vhg.2023</h3>
-  <h4>Test direct access to CWASA</h4>
-  <hr/>
-  
-  <!-- CWA signing avatar panel 0 -->
-  <!--================================================================-->
+<body onload="CWASA.init({avSettings:{initCamera:[0.00,0.53,2.06,-12.50,18.00,30.00,-1.00,-1.00],initSpeed:-1},useClientConfig:true});">  
   <div class="CWASAPanel av0" align="center" ></div>
   <!--================================================================-->
   <hr/>
@@ -104,7 +96,7 @@ function setSignFrame(evt) {
     <span class="CWASAProgress av0"></span>
     <hr/>
     <p align="center">
-      <span style="font-size: 90%;" >
+      <span style="font-size: 90%; display: none" >
         Sign/Frame:
         <input id="mySF" class="txtSF" value="0/0" type="text" />
         &nbsp;
@@ -121,6 +113,7 @@ function setSignFrame(evt) {
         <textarea id="mySiGML" class="txtaSiGMLText" rows="6" ></textarea>
 
 <br>
+<div style="display: none">
 New URL:  <input type="button" value="doURL" onclick='playURL(document.getElementById("myURL").value);' /><br>
 <input id="myURL" class="txtSiGMLURL av0" value="welkom-ngt.sigml" type="text" />
 
@@ -134,63 +127,46 @@ New URL:  <input type="button" value="doURL" onclick='playURL(document.getElemen
 <textarea id="JSONText" class="txtaSiGMLText" rows="6" >
 
 </textarea>
-
+</div>
 </div>
 
 <hr/>
-<p>
-  <small>
-    Available under the
-    <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA License</a>. JRWG 2021-01-19
-  </small>
-   
 </body>
 <script>
 let sigmlInput = document.getElementsByClassName('txtaSiGMLText')
-sigmlInput[0].value = `<?xml version="1.0" encoding="utf-8"?>
+sigmlInput[0].value = `<?xml version="1.0" encoding="UTF-8"?>
 <sigml>
-<hns_sign gloss="mug">
-<hamnosys_nonmanual>
-<hnm_mouthpicture picture="mVg"/>
-</hamnosys_nonmanual>
-<hamnosys_manual>
-<hamfist/> <hamthumbacrossmod/>
-<hamextfingerol/> <hampalml/>
-<hamshoulders/>
-<hamparbegin/> <hammoveu/> <hamarcu/>
-<hamreplace/> <hamextfingerul/> <hampalmdl/>
-<hamparend/>
-</hamnosys_manual>
-</hns_sign>
-<hns_sign gloss="take">
-<hamnosys_nonmanual>
-<hnm_mouthpicture picture="te_Ik"/>
-</hamnosys_nonmanual>
-<hamnosys_manual>
-<hamceeall/> <hamextfingerol/> <hampalml/>
-<hamlrbeside/> <hamshoulders/> <hamarmextended/>
-<hamreplace/> <hamextfingerl/> <hampalml/>
-<hamchest/> <hamclose/>
-</hamnosys_manual>
-</hns_sign>
-<hns_sign gloss="i">
-<hamnosys_nonmanual>
-<hnm_mouthpicture picture="a_I"/>
-</hamnosys_nonmanual>
-<hamnosys_manual>
-<hamfinger2/> <hamthumbacrossmod/>
-<hamextfingeril/> <hampalmr/>
-<hamchest/> <hamtouch/>
-</hamnosys_manual>
-</hns_sign>
+	<hns_sign gloss="want">
+		<hamnosys_nonmanual/>
+		<hamnosys_manual>
+			<hamfinger2345/>
+			<hamthumboutmod/>
+			<hambetween/>
+			<hamflathand/>
+			<hamthumboutmod/>
+			<hamextfingerul/>
+			<hampalml/>
+			<hamchest/>
+			<hamtouch/>
+			<hamparbegin/>
+			<hammoved/>
+			<hamparbegin/>
+			<hammoveo/>
+			<hamsmallmod/>
+			<hamreplace/>
+			<hamextfingerl/>
+			<hampalmd/>
+			<hamparend/>
+			<hamparend/>
+		</hamnosys_manual>
+	</hns_sign>
 </sigml>
+
 `
 let btn = document.getElementById("playButton")
 setTimeout(() => {
-  console.log('YOLO');
   btn.click()
 }, 2000)
-
 </script>
 
 </html>

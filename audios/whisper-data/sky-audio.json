@@ -1,0 +1,1 @@
+{"text": " The sky is blue and clear.", "segments": [{"id": 0, "seek": 0, "start": 0.0, "end": 3.0, "text": " The sky is blue and clear.", "tokens": [50364, 440, 5443, 307, 3344, 293, 1850, 13, 50514], "temperature": 0.0, "avg_logprob": -0.34158906936645506, "compression_ratio": 0.7647058823529411, "no_speech_prob": 0.008673513308167458}], "language": "English"}
