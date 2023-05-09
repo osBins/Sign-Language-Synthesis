@@ -59,3 +59,5 @@ def convert(videoName):
         time.sleep(0.5)
     with open("SiGML-output.sigml", "a") as f:
         f.write("""\n</sigml>""")
+
+    print("SiGML written out.")
