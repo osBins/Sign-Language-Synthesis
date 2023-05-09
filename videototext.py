@@ -1,25 +1,21 @@
-# Converting video to audio
-
+# import speech_recognition as sr
 
 import moviepy.editor as mp
 import whisper
-import speech_recognition as sr
+model = whisper.load_model("base")
 
-def convert_video_to_audio(video_path, audio_path):
+def convert_video_to_text(video_path, audio_path):
     clip = mp.VideoFileClip(video_path)
     clip.audio.write_audiofile(audio_path)
 
-convert_video_to_audio("./videos/isl.mp4", "./audios/audio-from-video.wav")
-
-model = whisper.load_model("base")
-
 ### Transcribe audio using OpenAI Whisper
-result = model.transcribe("./audios/audio-from-video.wav")
-print(result['text'])
+    result = model.transcribe("./audios/audio-from-video.wav")
+    resultFile = open('result.txt', 'w')
+  # print(result['text'])
+    resultFile.write(result['text'].lower().replace(',', '').replace('.', ''))
+    resultFile.close()
 
-resultFile = open('result.txt', 'w')
-resultFile.write(result['text'])
-resultFile.close()
+
 
 
 
