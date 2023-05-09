@@ -1,7 +1,7 @@
 # import speech_recognition as sr
-
-import moviepy.editor as mp
 import whisper
+import moviepy.editor as mp
+
 model = whisper.load_model("base")
 
 def convert_video_to_text(video_path, audio_path):
@@ -11,17 +11,14 @@ def convert_video_to_text(video_path, audio_path):
 ### Transcribe audio using OpenAI Whisper
     result = model.transcribe("./audios/audio-from-video.wav")
     resultFile = open('result.txt', 'w')
-  # print(result['text'])
     resultFile.write(result['text'].lower().replace(',', '').replace('.', ''))
     resultFile.close()
+  # print(result['text'])
 
 
-
-
-
-### Transcribe using Python Speech Recognition Library
+# ## Transcribe using Python Speech Recognition Library
 # r = sr.Recognizer()
-# with sr.AudioFile('audio_sample_abcd.wav') as source:
+# with sr.AudioFile('./audios/audio-from-video.wav') as source:
 #     r.adjust_for_ambient_noise(source)
 #     audio_text = r.record(source)
 #     try:
